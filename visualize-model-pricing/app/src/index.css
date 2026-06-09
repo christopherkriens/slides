@@ -1,0 +1,553 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #020617;
+  color: #f1f5f9;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.app {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem;
+}
+
+/* ── Header ─────────────────────────────────── */
+.header {
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+.header h1 {
+  font-size: 1.875rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #e879f9 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.375rem;
+}
+
+.header p {
+  color: #64748b;
+  font-size: 0.9375rem;
+}
+
+a {
+  color: #818cf8;
+  text-decoration: none;
+}
+
+a:hover { text-decoration: underline; }
+
+/* ── Provider filter ────────────────────────── */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filter-label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+  margin-right: 0.25rem;
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #64748b;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 99px;
+  padding: 0.3rem 0.75rem;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.chip:hover { border-color: #334155; }
+
+.chip.on { font-weight: 600; }
+
+.chip-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: opacity 0.12s;
+}
+
+.chip:not(.on) .chip-dot { opacity: 0.35; }
+
+/* ── Segmented control ──────────────────────── */
+.segmented {
+  display: inline-flex;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 8px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.seg {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #64748b;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.seg:hover { color: #94a3b8; }
+
+.seg.on {
+  background: #818cf8;
+  color: #0b1120;
+  font-weight: 600;
+}
+
+/* ── Scroll wrapper for wide tables ─────────── */
+.results-scroll {
+  overflow-x: auto;
+}
+
+/* ── Capability chart value key ─────────────── */
+.value-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 1rem;
+}
+
+.key-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.8rem;
+  background: #1e293b;
+  border: 1px solid #2d3f55;
+  border-radius: 8px;
+  padding: 0.3rem 0.6rem 0.3rem 0.35rem;
+}
+
+.key-badge {
+  width: 19px;
+  height: 19px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  color: #0b1120;
+}
+
+.key-name {
+  color: #e2e8f0;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.key-meta {
+  color: #64748b;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* ── Sections ───────────────────────────────── */
+.section {
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.section h2 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.875rem;
+}
+
+.section-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+}
+
+.section-row h2 {
+  margin-bottom: 0;
+}
+
+.note {
+  font-size: 0.8125rem;
+  color: #475569;
+  margin-bottom: 1rem;
+}
+
+/* ── Model Cards ────────────────────────────── */
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-top: 3px solid;
+  border-radius: 10px;
+  padding: 1.125rem;
+  transition: transform 0.15s;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.875rem;
+}
+
+.card-name {
+  font-weight: 600;
+  font-size: 0.9375rem;
+  color: #e2e8f0;
+}
+
+.badge {
+  font-size: 0.6875rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.card-prices {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.price-block label {
+  display: block;
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+}
+
+.price-block .val {
+  font-size: 1.1875rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.price-block .unit {
+  font-size: 0.6875rem;
+  font-weight: 400;
+  color: #475569;
+}
+
+.card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-bottom: 0.625rem;
+}
+
+.tag {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  background: #0f172a;
+  border: 1px solid #1e293b;
+  padding: 1px 7px;
+  border-radius: 5px;
+}
+
+.card-note {
+  font-size: 0.8rem;
+  color: #64748b;
+}
+
+/* ── Toggle ─────────────────────────────────── */
+.toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8125rem;
+  color: #64748b;
+  cursor: pointer;
+  user-select: none;
+}
+
+.toggle input {
+  cursor: pointer;
+  accent-color: #818cf8;
+}
+
+/* ── Tooltips ───────────────────────────────── */
+.tip {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 0.625rem 0.875rem;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  min-width: 180px;
+}
+
+.tip-title {
+  font-weight: 600;
+  color: #e2e8f0;
+  margin-bottom: 0.2rem;
+}
+
+.tip p {
+  color: #94a3b8;
+}
+
+/* ── Scatter legend ─────────────────────────── */
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-note {
+  font-size: 0.8rem;
+  color: #475569;
+  font-style: italic;
+}
+
+/* ── Calculator ─────────────────────────────── */
+.calc-layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 680px) {
+  .calc-layout { grid-template-columns: 1fr; }
+}
+
+.calc-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-bottom: 0.35rem;
+}
+
+.field-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.field-row input[type="number"] {
+  width: 90px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 6px;
+  padding: 0.35rem 0.6rem;
+  color: #f1f5f9;
+  font-size: 0.875rem;
+  outline: none;
+}
+
+.field-row input[type="number"]:focus {
+  border-color: #818cf8;
+}
+
+.field-row input[type="range"] {
+  flex: 1;
+  accent-color: #818cf8;
+}
+
+.field-unit {
+  font-size: 0.8rem;
+  color: #64748b;
+  min-width: 48px;
+}
+
+.field-hint {
+  font-size: 0.75rem;
+  color: #475569;
+  margin-top: 0.25rem;
+}
+
+/* ── Results table ──────────────────────────── */
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.results-table th {
+  text-align: left;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+  border-bottom: 1px solid #1e293b;
+}
+
+.results-table td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid #0f172a;
+  color: #cbd5e1;
+  vertical-align: middle;
+}
+
+.results-table tr:last-child td { border-bottom: none; }
+
+.results-table tr.best td { background: rgba(129, 140, 248, 0.06); }
+
+.model-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.model-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.best-tag {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #4ade80;
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.25);
+  padding: 1px 6px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cost-val {
+  font-weight: 600;
+  color: #f1f5f9;
+  font-variant-numeric: tabular-nums;
+}
+
+.breakdown {
+  font-size: 0.78rem;
+  color: #475569;
+  font-variant-numeric: tabular-nums;
+}
+
+.savings {
+  color: #4ade80;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── Capabilities table ─────────────────────── */
+.cap-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.cap-table th {
+  text-align: left;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #475569;
+  border-bottom: 1px solid #1e293b;
+}
+
+.cap-table td {
+  padding: 0.7rem 0.75rem;
+  border-bottom: 1px solid #0f172a;
+  color: #94a3b8;
+}
+
+.cap-table tr:last-child td { border-bottom: none; }
+
+.cap-yes { color: #4ade80; font-weight: 600; }
+.cap-no  { color: #475569; }
+
+/* ── Tier key ───────────────────────────────── */
+.tier-group {
+  margin-bottom: 0.875rem;
+}
+
+.tier-heading {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #475569;
+  margin-bottom: 0.4rem;
+}
+
+.tier-heading span {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* ── Footer ─────────────────────────────────── */
+.footer {
+  padding-top: 1.5rem;
+  border-top: 1px solid #1e293b;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #334155;
+}
