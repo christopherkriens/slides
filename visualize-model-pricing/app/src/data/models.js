@@ -1,6 +1,8 @@
 // Pricing source: GitHub Copilot — Models and pricing
 //   https://docs.github.com/en/copilot/reference/copilot-billing/models-and-pricing
 //   Pulled 2026-06-09. Prices are USD per 1M tokens. 1 AI credit = $0.01 USD.
+//   Exception: Claude Fable 5 pricing comes from Anthropic's launch announcement
+//   (see inline note below) since it is not yet listed on Copilot.
 //
 // Capability source: vals.ai SWE-bench Verified leaderboard (independent, consistent
 //   scaffold), updated 2026-06-04: https://www.vals.ai/benchmarks/swebench
@@ -36,6 +38,10 @@ export const MODELS = [
   { id: 'claude-opus-4-6',   name: 'Opus 4.6',   displayName: 'Claude Opus 4.6',   provider: 'Anthropic', input: 5.00, cachedInput: 0.50, output: 25.00, cacheWrite: 6.25, tier: null, sweBench: 78.2,  capTier: 3 },
   { id: 'claude-opus-4-7',   name: 'Opus 4.7',   displayName: 'Claude Opus 4.7',   provider: 'Anthropic', input: 5.00, cachedInput: 0.50, output: 25.00, cacheWrite: 6.25, tier: null, sweBench: 82.0,  capTier: 4 },
   { id: 'claude-opus-4-8',   name: 'Opus 4.8',   displayName: 'Claude Opus 4.8',   provider: 'Anthropic', input: 5.00, cachedInput: 0.50, output: 25.00, cacheWrite: 6.25, tier: null, sweBench: null,  capTier: 4 },
+  // Fable 5: Anthropic announcement (2026-06-09), https://www.anthropic.com/news/claude-fable-5-mythos-5
+  //   $10/M in, $50/M out. Cached-input and cache-write not yet published (null, not guessed).
+  //   Mythos 5 shares the same model and pricing (safeguards lifted for authorized users); not listed separately.
+  { id: 'claude-fable-5',    name: 'Fable 5',    displayName: 'Claude Fable 5',    provider: 'Anthropic', input: 10.00, cachedInput: null, output: 50.00, cacheWrite: null, tier: null, sweBench: null,  capTier: 4 },
 
   // ── Google ─────────────────────────────────────────────
   { id: 'gemini-2-5-pro',    name: 'Gemini 2.5 Pro',    displayName: 'Gemini 2.5 Pro',                provider: 'Google', input: 1.25, cachedInput: 0.125, output: 10.00, cacheWrite: null, tier: null,      sweBench: null,  capTier: 2 },

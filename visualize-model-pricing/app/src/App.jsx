@@ -119,6 +119,7 @@ export default function App() {
   const barData = useMemo(
     () => models
       .map(m => ({ ...m, _value: m[metric] }))
+      .filter(m => m._value != null) // some models have no published cached-input price
       .sort((a, b) => b._value - a._value),
     [models, metric]
   )
@@ -209,7 +210,7 @@ export default function App() {
           </div>
         </div>
         <p className="note">
-          {metricLabel} price, {models.length} model{models.length !== 1 ? 's' : ''}, sorted high to low. Bars colored by provider.
+          {metricLabel} price, {barData.length} model{barData.length !== 1 ? 's' : ''}, sorted high to low. Bars colored by provider.
         </p>
         <ResponsiveContainer width="100%" height={barData.length * 26 + 48}>
           <BarChart data={barData} layout="vertical" margin={{ top: 4, right: 56, left: 8, bottom: 4 }}>
@@ -235,7 +236,8 @@ export default function App() {
         <p className="note">
           {tierData.length} models grouped into capability tiers (lanes), positioned by output price.
           Further left = cheaper. Tiers use each provider's own model family positioning, not a benchmark.
-          GPT-5.5 (long context) is omitted: at $45/M it's priced out of usable range and would flatten the scale.
+          The new Claude Fable 5 sets a new ceiling at $50/M output. GPT-5.5 (long context) is still
+          omitted: it's a long-context pricing variant, not a distinct model.
         </p>
         <ResponsiveContainer width="100%" height={440}>
           <ScatterChart margin={{ top: 16, right: 28, bottom: 40, left: 70 }}>
@@ -249,7 +251,7 @@ export default function App() {
             ))}
             <XAxis
               type="number" dataKey="output" name="Output cost"
-              domain={[0, 32]} ticks={[0, 5, 10, 15, 20, 25, 30]}
+              domain={[0, 52]} ticks={[0, 10, 20, 30, 40, 50]}
               tick={{ fill: '#64748b', fontSize: 11 }} tickFormatter={v => `$${v}`}
               label={{ value: 'Output $ / 1M tokens  (further left = cheaper) →', position: 'insideBottom', offset: -24, fill: '#475569', fontSize: 12 }}
             />
@@ -330,7 +332,7 @@ export default function App() {
         </div>
         <p className="note" style={{ marginTop: '0.5rem', marginBottom: 0 }}>
           Scores from the <a href="https://www.vals.ai/benchmarks/swebench" target="_blank" rel="noreferrer">vals.ai SWE-bench Verified leaderboard</a> (independent, consistent scaffold, updated 2026-06-04).
-          Models without a score on that single leaderboard (including Opus 4.8, Sonnet 4.6, Haiku 4.5, and the smaller GPT/Gemini/GitHub SKUs)
+          Models without a score on that single leaderboard (including the new Fable 5, Opus 4.8, Sonnet 4.6, Haiku 4.5, and the smaller GPT/Gemini/GitHub SKUs)
           are left off rather than compared across mismatched scaffolds. SWE-bench numbers shift with the agent harness, so read this as a coarse tier, not a precise ranking.
         </p>
       </section>
