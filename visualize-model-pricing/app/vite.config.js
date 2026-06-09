@@ -25,4 +25,8 @@ export default defineConfig(({ command }) => ({
     port: process.env.PORT ? Number(process.env.PORT) : 5173,
     strictPort: false,
   },
+  preview: {
+    port: process.env.PORT ? Number(process.env.PORT) : 4173,
+    strictPort: false,
+  },
 }))
