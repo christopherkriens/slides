@@ -141,12 +141,10 @@ export default function App() {
   // this avoids occlusion without implying anything.
   const tierData = useMemo(() => {
     const groups = {}
-    models
-      .filter(m => m.id !== 'gpt-5-5-lc') // priced out of usable range; would flatten the scale
-      .forEach(m => {
-        if (!groups[m.capTier]) groups[m.capTier] = []
-        groups[m.capTier].push(m)
-      })
+    models.forEach(m => {
+      if (!groups[m.capTier]) groups[m.capTier] = []
+      groups[m.capTier].push(m)
+    })
     const out = []
     Object.values(groups).forEach(g => {
       g.sort((a, b) => a.output - b.output)
@@ -234,10 +232,9 @@ export default function App() {
       <section className="section">
         <h2>Capability Tier vs Cost</h2>
         <p className="note">
-          {tierData.length} models grouped into capability tiers (lanes), positioned by output price.
+          All {tierData.length} models grouped into capability tiers (lanes), positioned by output price.
           Further left = cheaper. Tiers use each provider's own model family positioning, not a benchmark.
-          The new Claude Fable 5 sets a new ceiling at $50/M output. GPT-5.5 (long context) is still
-          omitted: it's a long-context pricing variant, not a distinct model.
+          The new Claude Fable 5 sets the ceiling at $50/M output.
         </p>
         <ResponsiveContainer width="100%" height={440}>
           <ScatterChart margin={{ top: 16, right: 28, bottom: 40, left: 70 }}>
